@@ -1,0 +1,13 @@
+# Rainb0w Lite config file
+VERSIONCODE = 1.8
+
+[REALITY]
+PRIVATE_KEY = ""
+PUBLIC_KEY = ""
+SHORT_ID = ""
+SNI = ""
+PORT = 443
+
+[HYSTERIA]
+OBFS = ""
+SNI = ""
