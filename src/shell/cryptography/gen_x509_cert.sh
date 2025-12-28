@@ -72,10 +72,10 @@ if [[ -f "$SERVER_CERT" ]]; then
     echo ">> Server cert valid for $DAYS_LEFT more days; no renewal needed"
     RENEW=false
   fi
-
-  # Create a combined certificate (server + CA) for sing‑box
-  cat "$SERVER_CERT" "$CA_CERT" > "$BASE_DIR/fullchain.crt"
 fi
+
+# Create a combined certificate (server + CA) for sing‑box
+cat "$SERVER_CERT" "$CA_CERT" > "$BASE_DIR/fullchain.crt"
 
 ### -----------------------------
 ### Renew server cert
