@@ -233,7 +233,7 @@
         "strategy": "prefer_ipv4"
       },
       {
-        "protocol": ["quic"],
+        "protocol": ["quic", "bittorrent"],
         "action": "reject"
       },
       {
