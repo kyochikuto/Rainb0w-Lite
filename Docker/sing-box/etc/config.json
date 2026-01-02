@@ -220,6 +220,11 @@
     ],
     "rules": [
       {
+        "action": "resolve",
+        "server": "adguard-dns",
+        "strategy": "prefer_ipv4"
+      },
+      {
         "action": "sniff",
         "sniffer": ["http", "tls", "quic", "dns"],
         "timeout": "1s"
@@ -229,9 +234,10 @@
         "action": "hijack-dns"
       },
       {
-        "action": "resolve",
-        "strategy": "prefer_ipv4"
-      },
+        "rule_set": ["dns-servers"],
+        "action": "route",
+        "outbound": "direct"
+      }
       {
         "protocol": ["quic", "bittorrent"],
         "action": "reject"
@@ -249,7 +255,7 @@
         "action": "reject"
       },
       {
-        "rule_set": ["dns-servers", "youtube"],
+        "rule_set": ["youtube"],
         "action": "route",
         "outbound": "direct"
       }
