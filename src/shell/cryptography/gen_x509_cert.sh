@@ -74,9 +74,6 @@ if [[ -f "$SERVER_CERT" ]]; then
   fi
 fi
 
-# Create a combined certificate (server + CA) for sing‑box
-cat "$SERVER_CERT" "$CA_CERT" > "$BASE_DIR/fullchain.crt"
-
 ### -----------------------------
 ### Renew server cert
 ### -----------------------------
@@ -127,6 +124,9 @@ EOF
     -extfile "$SERVER_EXT"
 
   rm -f "$SERVER_CSR" "$SERVER_EXT"
+
+  # Create a combined certificate (server + CA) for sing‑box
+  cat "$SERVER_CERT" "$CA_CERT" > "$BASE_DIR/fullchain.crt"
 
   echo ">> Certificate renewed successfully"
 
