@@ -237,7 +237,7 @@
         "rule_set": ["dns-servers"],
         "action": "route",
         "outbound": "direct"
-      }
+      },
       {
         "protocol": ["quic", "bittorrent"],
         "action": "reject"
