@@ -220,17 +220,20 @@
     ],
     "rules": [
       {
-        "action": "resolve",
-        "server": "adguard-dns",
-        "strategy": "prefer_ipv4"
-      },
-      {
         "action": "sniff",
-        "sniffer": ["http", "tls", "quic", "dns"],
         "timeout": "1s"
       },
       {
-        "protocol": "dns",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
         "action": "hijack-dns"
       },
       {
