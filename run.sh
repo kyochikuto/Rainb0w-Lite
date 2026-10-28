@@ -12,13 +12,15 @@ source $PWD/src/shell/os/os_utils.sh
 trap '' INT
 
 # OS check
-if [[ "$DISTRO" =~ "Ubuntu" ]]; then
-    case "$DISTRO_VERSION" in
-        "22.04"|"24.04") ;;
-        *) echo "Your version of Ubuntu is not supported Only 22.04, and 24.04 versions are supported."
-            exit 0
-            ;;
-    esac
+if [[ "$(lsb_release -is)" != "Ubuntu" ]]; then
+    echo "This script only runs on Ubuntu."
+    exit 1
+fi
+
+VERSION=$(lsb_release -rs)
+if [[ $(echo "$VERSION < 22.04" | bc -l) -eq 1 ]]; then
+    echo "Your version of Ubuntu ($VERSION) is not supported. Version 22.04 or higher is required."
+    exit 1
 fi
 
 # Check for root permissions
