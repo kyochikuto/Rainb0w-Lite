@@ -23,6 +23,13 @@ if [[ $(echo "$VERSION < 22.04" | bc -l) -eq 1 ]]; then
     exit 1
 fi
 
+# Check if reboot is required
+if [ -f /var/run/reboot-required ]; then
+    echo "A system reboot is pending for the following packages:"
+    cat /var/run/reboot-required.pkgs
+    exit 1
+fi
+
 # Check for root permissions
 if [ "$EUID" -ne 0 ]; then
     echo "Please run as root (sudo ./run.sh)"
