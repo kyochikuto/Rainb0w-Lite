@@ -69,6 +69,12 @@ echo -e "${B_GREEN}>> Allow SSH ${RESET}"
 iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -m comment --comment "Allow SSH" -j ACCEPT
 ip6tables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -m comment --comment "Allow SSH" -j ACCEPT
 
+echo -e "${B_GREEN}>> Allow DNS ${RESET}"
+iptables -A INPUT -p udp --dport 53 -m conntrack --ctstate NEW -m comment --comment "Allow DNS" -j ACCEPT
+iptables -A INPUT -p tcp --dport 53 -m conntrack --ctstate NEW -m comment --comment "Allow DNS over TCP" -j ACCEPT
+ip6tables -A INPUT -p udp --dport 53 -m conntrack --ctstate NEW -m comment --comment "Allow DNS" -j ACCEPT
+ip6tables -A INPUT -p tcp --dport 53 -m conntrack --ctstate NEW -m comment --comment "Allow DNS over TCP" -j ACCEPT
+
 echo -e "${B_GREEN}>> Drop ALL incoming connections except from Iran and Cloudflare ${RESET}"
 # Log any connection attempts not originating from Iran or Cloudflare
 #  to '/var/log/kern.log' tagged with the prefix below
